@@ -10,7 +10,7 @@ from   keras.layers.normalization import BatchNormalization
 
 file_name = 'dataset.csv'
 net = None
-wait_time = 530
+wait_time = 60
 
 def buildNet(w_init="glorot_uniform",act="tanh"):
     global net
