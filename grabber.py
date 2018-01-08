@@ -18,9 +18,9 @@ print("price_usd, 24h_volume_usd, market_cap_usd, available_supply ,total_supply
 
 while True:
   try:
-    data = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin/").json()[0]
-    bstamp = requests.get("https://www.bitstamp.net/api/v2/ticker/btcusd/").json() 
-    bkc = requests.get("https://blockchain.info/ticker").json()
+    data = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin/", timeout=10).json()[0]
+    bstamp = requests.get("https://www.bitstamp.net/api/v2/ticker/btcusd/", timeout=10).json() 
+    bkc = requests.get("https://blockchain.info/ticker", timeout=10).json()
     log = ''
   
     for d in data.keys():
