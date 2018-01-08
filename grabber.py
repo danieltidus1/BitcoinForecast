@@ -41,3 +41,4 @@ while True:
   except requests.exceptions.RequestException as e:
     print e
     print("Trying again...")
+    time.sleep(wait_time)
