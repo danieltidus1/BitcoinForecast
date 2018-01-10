@@ -53,7 +53,7 @@ def getCurrentData(label=False):
   vect = []
   data = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin/").json()[0]
   bstamp = requests.get("https://www.bitstamp.net/api/v2/ticker/btcusd/").json()
-  bkc = requests.get("https://blockchain.info/ticker").json()
+  bkc = requests.get("https://poloniex.com/public?command=returnTicker").json()
   '''
   for i in data.keys():
     if i in keys:
@@ -66,9 +66,9 @@ def getCurrentData(label=False):
     
   vect.append(float(bstamp["volume"]))
   vect.append(float(bstamp["vwap"]))
-  vect.append(float(bkc["USD"]["sell"]))
-  vect.append(float(bkc["USD"]["buy"]))
+  vect.append(int(float(bkc["USDT_BTC"]["highestBid"])*100)/100)
+  vect.append(int(float(bkc["USDT_BTC"]["lowestAsk"])*100)/100)
 
   if label:
-    return vect,float(bkc["USD"]["15m"])
+    return vect,int(float(bkc["USDT_BTC"]["last"])*100)/100
   return vect

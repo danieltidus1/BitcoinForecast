@@ -20,7 +20,7 @@ while True:
   try:
     data = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin/", timeout=10).json()[0]
     bstamp = requests.get("https://www.bitstamp.net/api/v2/ticker/btcusd/", timeout=10).json() 
-    bkc = requests.get("https://blockchain.info/ticker", timeout=10).json()
+    bkc = requests.get("https://poloniex.com/public?command=returnTicker", timeout=10).json()
     log = ''
   
     for d in data.keys():
@@ -32,9 +32,10 @@ while True:
          log = log + val + ', '
       
     print("Data: " + log)
+    
 
     f.write("{},{},".format(bstamp["volume"],bstamp["vwap"]))
-    f.write("{},{},{}".format(bkc["USD"]["sell"],bkc["USD"]["buy"],bkc["USD"]["15m"]))
+    f.write("{},{},{}".format(float(int(float(bkc["USDT_BTC"]["highestBid"])*100)/100),float(int(float(bkc["USDT_BTC"]["lowestAsk"])*100)/100),float(int(float(bkc["USDT_BTC"]["last"])*100)/100)))
     f.write("\n")
     f.flush()
     time.sleep(wait_time)
