@@ -1,0 +1,9 @@
+#!/bin/bash
+arg_="NR%"
+arg_=$arg_$3
+end="==0"
+arg_=$arg_$end
+
+echo $arg_
+
+awk $arg_ $1 > $2
